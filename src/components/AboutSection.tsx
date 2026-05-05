@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef } from 'react';
 import image from '../assets/school.jpg';
+
 const AboutSection: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -34,21 +35,41 @@ const AboutSection: React.FC = () => {
         className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center opacity-0 translate-y-10 transition-all duration-1000"
       >
 
-        {/* IMAGE SIDE */}
-        <div className="relative group">
-          <img
-            src={image}  
-            alt="School"
-            className="rounded-3xl shadow-2xl w-full h-[420px] object-cover transition duration-700 group-hover:scale-105"
-          />
+        {/* 🔥 IMAGE SIDE WITH FLIP */}
+        <div className="relative group perspective">
 
-          {/* GLASS OVERLAY */}
-          <div className="absolute inset-0 rounded-3xl bg-white/10 backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-500"></div>
+          <div className="relative w-full h-[420px] transform-style preserve-3d transition-transform duration-700 group-hover:rotate-y-180">
+
+            {/* FRONT */}
+            <div className="absolute inset-0 backface-hidden">
+              <img
+                src={image}
+                alt="School"
+                className="rounded-3xl shadow-2xl w-full h-full object-cover"
+              />
+
+              {/* GLASS OVERLAY */}
+              <div className="absolute inset-0 rounded-3xl bg-white/10 backdrop-blur-md opacity-0 group-hover:opacity-100 transition duration-500"></div>
+            </div>
+
+            {/* BACK (LOGO) */}
+            <div className="absolute inset-0 rotate-y-180 backface-hidden flex items-center justify-center bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl shadow-2xl">
+
+              <img
+                src="/IdealSchoolLogo.png"
+                alt="Logo"
+                className="w-40 h-40 object-contain animate-pulse"
+              />
+
+            </div>
+
+          </div>
 
           {/* FLOATING BADGE */}
           <div className="absolute -bottom-6 -left-6 bg-white shadow-xl px-5 py-3 rounded-xl text-sm font-semibold animate-bounce">
             🎓 20+ Years Excellence
           </div>
+
         </div>
 
         {/* CONTENT SIDE */}
@@ -104,11 +125,27 @@ const AboutSection: React.FC = () => {
 
       </div>
 
-      {/* ANIMATION CLASS */}
+      {/* 🔥 STYLES */}
       <style>{`
         .show {
           opacity: 1 !important;
           transform: translateY(0) !important;
+        }
+
+        .perspective {
+          perspective: 1000px;
+        }
+
+        .transform-style {
+          transform-style: preserve-3d;
+        }
+
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+
+        .rotate-y-180 {
+          transform: rotateY(180deg);
         }
       `}</style>
 

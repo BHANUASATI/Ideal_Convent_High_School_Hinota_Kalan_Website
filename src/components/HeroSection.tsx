@@ -3,7 +3,7 @@ import React from 'react';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative w-full h-screen overflow-hidden pt-36">
+    <section className="relative w-full h-screen overflow-hidden">
 
       {/* VIDEO BACKGROUND */}
       <video

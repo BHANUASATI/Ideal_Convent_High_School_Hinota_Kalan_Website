@@ -8,23 +8,35 @@ const TopNavbar: React.FC = () => {
 
       <div className="w-full px-4 sm:px-6 lg:px-8">
 
-        {/* MAIN NAV */}
         <div className="flex items-center justify-between h-16">
 
-          {/* LEFT - LOGO (proper start alignment) */}
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center font-bold text-black text-lg shadow-lg hover:scale-105 transition">
-              I
+          {/* 🔥 LEFT - LOGO + BRAND */}
+          <div className="flex items-center gap-4">
+
+            {/* BIGGER LOGO */}
+            <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-xl hover:scale-110 transition duration-300 bg-white/10">
+              <img
+                src="/IdealSchoolLogo.png"
+                alt="School Logo"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = "https://via.placeholder.com/100?text=Logo";
+                }}
+              />
             </div>
 
-            <h1 className="text-2xl font-bold tracking-wide">
-              <span className="bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-500 bg-clip-text text-transparent">
+            {/* ✨ PREMIUM TEXT */}
+            <h1 className="text-3xl font-extrabold tracking-wider group cursor-pointer">
+              
+              <span className="bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-500 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,200,100,0.6)] group-hover:scale-105 transition inline-block">
                 ICHS
               </span>
+
             </h1>
+
           </div>
 
-          {/* CENTER - CONTENT */}
+          {/* CENTER - MARQUEE */}
           <div className="hidden md:flex flex-1 justify-center px-6">
             <div className="w-full max-w-2xl overflow-hidden rounded-full bg-white/10 backdrop-blur-md px-6 py-2 border border-white/10 shadow-inner">
               <div className="animate-marquee whitespace-nowrap">
@@ -42,7 +54,7 @@ const TopNavbar: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT - SOCIAL ICONS */}
+          {/* RIGHT - SOCIAL */}
           <div className="flex items-center gap-2 sm:gap-3">
 
             <a href="#" className="p-2 rounded-xl bg-white/10 hover:bg-blue-600/30 hover:text-blue-400 transition-all duration-300 hover:scale-110 shadow-md">
@@ -66,10 +78,11 @@ const TopNavbar: React.FC = () => {
             </a>
 
           </div>
+
         </div>
       </div>
 
-      {/* MOBILE CONTENT */}
+      {/* MOBILE */}
       <div className="md:hidden px-4 pb-3">
         <div className="overflow-hidden rounded-full bg-white/10 px-4 py-2 border border-white/10">
           <div className="animate-marquee whitespace-nowrap">
