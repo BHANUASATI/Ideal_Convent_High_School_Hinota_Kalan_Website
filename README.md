@@ -80,6 +80,8 @@ npm run dev
 - `npm run build` - Build the application for production
 - `npm run preview` - Preview the production build locally
 - `npm run lint` - Run ESLint to check for code issues
+- `npm run lint:fix` - Fix ESLint issues automatically
+- `npm run type-check` - Run TypeScript type checking without emitting files
 
 ## 🏗️ Build and Deployment
 
@@ -96,6 +98,59 @@ This will create an optimized production build in the `dist` folder.
 ```bash
 npm run preview
 ```
+
+## 🚀 CI/CD Deployment
+
+This project is configured for automatic deployment to Netlify using GitHub Actions.
+
+### Setup Instructions
+
+1. **Push to GitHub**: 
+   - Create a new repository on GitHub
+   - Push your code to the repository
+
+2. **Configure Netlify**:
+   - Sign up/log in to [Netlify](https://netlify.com)
+   - Click "Add new site" → "Import an existing project"
+   - Connect your GitHub repository
+   - Set build command: `npm run build`
+   - Set publish directory: `dist`
+   - Click "Deploy site"
+
+3. **Get Netlify Credentials**:
+   - Go to Netlify → Site settings → Build & deploy → API
+   - Note your **Site ID**
+   - Go to User settings → Applications → Personal access tokens
+   - Generate a new token with **Deploy** scope
+
+4. **Configure GitHub Secrets**:
+   - In your GitHub repository, go to Settings → Secrets and variables → Actions
+   - Add these secrets:
+     - `NETLIFY_AUTH_TOKEN`: Your Netlify personal access token
+     - `NETLIFY_SITE_ID`: Your Netlify site ID
+
+### How It Works
+
+- **Automatic Triggers**: The workflow runs on every push to `main`/`master` branch and on pull requests
+- **Build Process**: 
+  - Installs dependencies with `npm ci`
+  - Runs linting checks
+  - Builds the application
+  - Deploys to Netlify
+- **Preview Deployments**: Pull requests automatically get preview deployments
+
+### Manual Deployment
+
+To deploy manually without waiting for push:
+
+```bash
+npm run build
+# Deploy the dist folder to Netlify using the CLI or drag-and-drop
+```
+
+### Environment Variables
+
+The workflow uses Node.js 18 for consistent builds across environments.
 
 ## 🎨 Customization
 

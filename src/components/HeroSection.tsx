@@ -17,34 +17,50 @@ const HeroSection: React.FC = () => {
         <source src="/videos/schoolvideo.mp4" type="video/mp4" />
       </video>
 
-      {/* OVERLAY */}
-      <div className="absolute inset-0 bg-black/60"></div>
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/70"></div>
 
       {/* CONTENT */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4">
 
-        <h1 className="text-4xl sm:text-6xl font-bold text-white leading-tight">
-          Empowering Future Leaders
+        {/* 🔥 BADGE */}
+        <div className="mb-4 px-4 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm text-gray-200">
+          🎓 Admissions Open 2026
+        </div>
+
+        {/* 🔥 MAIN HEADING */}
+        <h1 className="text-4xl sm:text-6xl font-extrabold text-white leading-tight">
+          Welcome to  
           <br />
           <span className="bg-gradient-to-r from-yellow-300 via-orange-400 to-pink-500 bg-clip-text text-transparent">
-            Through Quality Education
+            Ideal Convent High School
           </span>
         </h1>
 
-        <p className="mt-4 text-gray-200 max-w-2xl text-sm sm:text-lg">
-          Join our institution where innovation meets excellence. 
-          We nurture young minds with modern learning and future-focused education.
+        {/* 🔥 SUBTEXT */}
+        <p className="mt-5 text-gray-300 max-w-2xl text-sm sm:text-lg leading-relaxed">
+          At Ideal Convent High School, we nurture young minds with quality education, 
+          strong values, and modern learning techniques to prepare students for a successful future.
         </p>
 
-        {/* BUTTONS */}
-        <div className="mt-8 flex flex-col sm:flex-row gap-4">
-          <button className="px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold shadow-lg hover:scale-105 transition">
-            Apply Now
+        {/* 🔥 HIGHLIGHTS */}
+        <div className="mt-6 flex flex-wrap justify-center gap-4 text-xs sm:text-sm text-gray-200">
+          <span className="bg-white/10 px-3 py-1 rounded-full">🏆 Excellent Academic Results</span>
+          <span className="bg-white/10 px-3 py-1 rounded-full">📚 Smart Classrooms</span>
+          <span className="bg-white/10 px-3 py-1 rounded-full">👨‍🏫 Experienced Teachers</span>
+        </div>
+
+        {/* 🔥 BUTTONS */}
+        <div className="mt-10 flex flex-col sm:flex-row gap-4">
+
+          <button className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold shadow-xl hover:scale-105 transition">
+            Apply for Admission
           </button>
 
-          <button className="px-6 py-3 rounded-full border border-white text-white font-semibold backdrop-blur-md hover:bg-white hover:text-black transition">
+          <button className="px-8 py-3 rounded-full border border-white text-white font-semibold backdrop-blur-md hover:bg-white hover:text-black transition">
             Explore Courses
           </button>
+
         </div>
 
       </div>
