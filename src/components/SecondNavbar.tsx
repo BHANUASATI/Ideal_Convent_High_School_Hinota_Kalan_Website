@@ -29,7 +29,7 @@ const SecondNavbar: React.FC = () => {
         {/* HEADER */}
         <div className="flex items-center h-20 relative">
 
-          {/* LEFT SPACE (BALANCE CENTER TEXT) */}
+          {/* LEFT SPACE */}
           <div className="w-10 md:hidden" />
 
           {/* CENTER TEXT */}
@@ -64,6 +64,17 @@ const SecondNavbar: React.FC = () => {
             />
 
             <NavItem icon={<FaPhone />} label="Contact" />
+
+            {/* ✅ LOGIN / SIGNUP BUTTONS */}
+            <div className="flex items-center gap-3 ml-4">
+              <button className="px-4 py-1.5 rounded-lg border border-blue-500 text-blue-600 hover:bg-blue-50 transition">
+                Login
+              </button>
+              <button className="px-4 py-1.5 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition shadow-md">
+                Signup
+              </button>
+            </div>
+
           </div>
 
           {/* RIGHT MENU BUTTON */}
@@ -141,6 +152,16 @@ const SecondNavbar: React.FC = () => {
           </div>
 
           <MobileItem icon={<FaPhone />} label="Contact" />
+
+          {/* ✅ MOBILE LOGIN / SIGNUP */}
+          <div className="pt-4 border-t flex flex-col gap-3">
+            <button className="w-full py-2 rounded-lg border border-blue-500 text-blue-600">
+              Login
+            </button>
+            <button className="w-full py-2 rounded-lg bg-blue-600 text-white shadow">
+              Signup
+            </button>
+          </div>
 
         </div>
       </div>
