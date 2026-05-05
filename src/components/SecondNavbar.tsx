@@ -14,22 +14,37 @@ import {
 const SecondNavbar: React.FC = () => {
   const [dropdown, setDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
+
+  const toggleMobileDropdown = (name: string) => {
+    setMobileDropdown(prev => (prev === name ? null : name));
+  };
 
   return (
-    <nav className="fixed top-16 left-0 right-0 z-40 bg-white/80 backdrop-blur-lg shadow-lg border-b border-gray-200">
+    <nav className="bg-white/90 backdrop-blur-lg shadow-lg border-b border-gray-200">
 
-      {/* DESKTOP NAV */}
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-center items-center h-20 relative">
+      {/* TOP SPACING */}
+      <div className="max-w-7xl mt-28 md:mt-20 mx-auto px-4">
+        
+        {/* HEADER */}
+        <div className="flex items-center h-20 relative">
 
-          {/* CENTER LINKS */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* LEFT SPACE (BALANCE CENTER TEXT) */}
+          <div className="w-10 md:hidden" />
+
+          {/* CENTER TEXT */}
+          <div className="md:hidden absolute left-1/2 transform -translate-x-1/2">
+            <span className="text-xl font-bold tracking-wide bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-sm">
+              Welcome to ICHS
+            </span>
+          </div>
+
+          {/* DESKTOP NAV */}
+          <div className="hidden md:flex items-center gap-8 mx-auto">
 
             <NavItem icon={<FaHome />} label="Home" />
-
             <NavItem icon={<FaInfoCircle />} label="About" />
 
-            {/* ACADEMICS */}
             <Dropdown
               icon={<FaBook />}
               label="Academics"
@@ -39,7 +54,6 @@ const SecondNavbar: React.FC = () => {
               items={["Curriculum", "Departments", "Library"]}
             />
 
-            {/* ADMISSION */}
             <Dropdown
               icon={<FaUserGraduate />}
               label="Admission"
@@ -50,12 +64,14 @@ const SecondNavbar: React.FC = () => {
             />
 
             <NavItem icon={<FaPhone />} label="Contact" />
-
           </div>
 
-          {/* MOBILE BUTTON */}
-          <div className="absolute right-0 md:hidden">
-            <button onClick={() => setMobileOpen(!mobileOpen)}>
+          {/* RIGHT MENU BUTTON */}
+          <div className="ml-auto md:hidden z-50">
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="p-2 rounded-lg bg-white shadow-md hover:bg-gray-100 active:scale-95 transition"
+            >
               {mobileOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
             </button>
           </div>
@@ -66,16 +82,63 @@ const SecondNavbar: React.FC = () => {
       {/* MOBILE MENU */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ${
-          mobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="px-6 py-4 space-y-4 bg-white shadow-inner">
+        <div className="px-6 py-5 space-y-4 bg-white shadow-inner">
 
           <MobileItem icon={<FaHome />} label="Home" />
           <MobileItem icon={<FaInfoCircle />} label="About" />
 
-          <MobileDropdown title="Academics" items={["Curriculum", "Departments", "Library"]} />
-          <MobileDropdown title="Admission" items={["Apply Now", "Fee Structure", "Scholarships"]} />
+          {/* MOBILE DROPDOWN - ACADEMICS */}
+          <div>
+            <div
+              onClick={() => toggleMobileDropdown("academics")}
+              className="flex justify-between items-center cursor-pointer font-semibold"
+            >
+              <span className="flex items-center gap-2">
+                <FaBook /> Academics
+              </span>
+              <FaChevronDown
+                className={`transition-transform ${
+                  mobileDropdown === "academics" ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+
+            {mobileDropdown === "academics" && (
+              <div className="pl-6 mt-2 space-y-2 text-sm text-gray-500">
+                <p>Curriculum</p>
+                <p>Departments</p>
+                <p>Library</p>
+              </div>
+            )}
+          </div>
+
+          {/* MOBILE DROPDOWN - ADMISSION */}
+          <div>
+            <div
+              onClick={() => toggleMobileDropdown("admission")}
+              className="flex justify-between items-center cursor-pointer font-semibold"
+            >
+              <span className="flex items-center gap-2">
+                <FaUserGraduate /> Admission
+              </span>
+              <FaChevronDown
+                className={`transition-transform ${
+                  mobileDropdown === "admission" ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+
+            {mobileDropdown === "admission" && (
+              <div className="pl-6 mt-2 space-y-2 text-sm text-gray-500">
+                <p>Apply Now</p>
+                <p>Fee Structure</p>
+                <p>Scholarships</p>
+              </div>
+            )}
+          </div>
 
           <MobileItem icon={<FaPhone />} label="Contact" />
 
@@ -84,7 +147,6 @@ const SecondNavbar: React.FC = () => {
 
       {/* STYLES */}
       <style>{`
-
         .nav-item {
           display: flex;
           align-items: center;
@@ -96,7 +158,6 @@ const SecondNavbar: React.FC = () => {
           transition: 0.3s;
         }
 
-        /* COOL UNDERLINE EFFECT */
         .nav-item::after {
           content: '';
           position: absolute;
@@ -117,7 +178,6 @@ const SecondNavbar: React.FC = () => {
           transform: translateY(-2px);
         }
 
-        /* DROPDOWN */
         .dropdown {
           position: absolute;
           top: 50px;
@@ -147,7 +207,6 @@ const SecondNavbar: React.FC = () => {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }
         }
-
       `}</style>
 
     </nav>
@@ -182,18 +241,6 @@ const Dropdown = ({ icon, label, items, isOpen, onEnter, onLeave }: any) => (
 const MobileItem = ({ icon, label }: any) => (
   <div className="flex items-center gap-3 font-medium text-gray-700">
     {icon} {label}
-  </div>
-);
-
-/* MOBILE DROPDOWN */
-const MobileDropdown = ({ title, items }: any) => (
-  <div>
-    <p className="font-semibold text-gray-800">{title}</p>
-    {items.map((item: string, i: number) => (
-      <div key={i} className="pl-4 text-gray-500 text-sm py-1">
-        {item}
-      </div>
-    ))}
   </div>
 );
 
